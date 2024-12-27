@@ -1,11 +1,12 @@
 import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
+import {validateEmailInput} from '../../../utils/string-util/validate-email-input';
 
 interface InputEmailProps {
   label: string;
   value?: string;
-  onChangeText?: (text: string) => void;
+  onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
 }
 
@@ -27,14 +28,13 @@ const InputEmail: React.FC<InputEmailProps> = ({
   };
 
   const validateEmail = (text: string) => {
-    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
-    if (reg.test(text) === false) {
+    const isEmailvalid = validateEmailInput(text);
+    if (!isEmailvalid) {
       setErrMsg("input doesn't match email format");
-      return false;
     } else {
       setErrMsg('');
-      return true;
     }
+    onChangeText(text);
   };
 
   return (

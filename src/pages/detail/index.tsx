@@ -1,9 +1,9 @@
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
-import {Button, Text, View} from 'react-native';
+import {Button, StyleSheet, Text, View} from 'react-native';
 import {RootStackParamList} from '../../RootStack';
-import {Input} from '../../components/atom';
+import Input from '../../components/atom/input/DefaultInput';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -21,9 +21,23 @@ export const Detail: React.FC<DetailProp> = ({navigation, route}) => {
 
   return (
     <View>
-      <Text>{todo?.title}</Text>;
-      <Input label="input todo" value={todo?.content} />
+      <Text style={styles.title}>{todo?.title}</Text>;
+      <View style={styles.item}>
+        <Input label="input todo" value={todo?.content} />
+      </View>
       <Button title="Save" onPress={() => {}} />
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  item: {
+    backgroundColor: '#f9c2ff',
+    padding: 20,
+    marginVertical: 20,
+    marginHorizontal: 16,
+  },
+  title: {
+    fontSize: 16,
+  },
+});

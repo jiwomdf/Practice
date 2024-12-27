@@ -4,11 +4,12 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Gap, Link} from '../../components/atom';
 import Button from '../../components/atom/button';
-import InputDefault from '../../components/atom/input';
+import DefaultInput from '../../components/atom/input/DefaultInput';
 import InputEmail from '../../components/atom/input/EmailInput';
 import {CredetialModel} from '../../core/data/model/credential-model';
 import {RootStackParamList} from '../../RootStack';
 import {colors, fonts} from '../../utils';
+import {validateEmailInput} from '../../utils/string-util/validate-email-input';
 import {setLogin} from './login-presenter';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
@@ -33,12 +34,15 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
 
   const handleEmailChange = (text: string) => {
     setEmail(text);
-    setIsFormValid(email !== '' && password.length > 0);
+    const isEmailvalid = validateEmailInput(email);
+    setIsFormValid(isEmailvalid && password.length > 3);
   };
 
   const handlPasswordChange = (text: string) => {
     setPassword(text);
-    setIsFormValid(email !== '' && password.length > 0);
+    const isEmailvalid = validateEmailInput(email);
+    console.log(password.length);
+    setIsFormValid(isEmailvalid && password.length > 3);
   };
 
   return (
@@ -47,7 +51,7 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
       <Text style={styles.title}>Login </Text>
       <InputEmail label="Email Address" onChangeText={handleEmailChange} />
       <Gap height={24} />
-      <InputDefault
+      <DefaultInput
         label="Password"
         secureTextEntry
         onChangeText={handlPasswordChange}
@@ -58,7 +62,16 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
       <Button
         title="Login"
         onPress={() => {
-          handleLogin(email, password);
+          console.log(
+            'isFormvalid: ' + isFormvalid,
+            'email: ' + email,
+            'password: ' + password,
+          );
+          if (isFormvalid) {
+            handleLogin(email, password);
+          } else {
+          }
+          //handleLogin(email, password);
         }}
       />
       <Gap height={30} />
@@ -83,7 +96,6 @@ const styles = StyleSheet.create({
     fontFamily: fonts.primary[600],
     color: colors.secondary,
     marginVertical: 40,
-    maxWidth: 200,
     textAlign: 'center',
   },
 });
