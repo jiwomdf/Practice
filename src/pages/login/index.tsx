@@ -30,7 +30,12 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
       <Gap height={10} />
       <Link title="Forgot My Password" size={12} onPress={() => {}} />
       <Gap height={40} />
-      <Button title="Login" onPress={() => {}} />
+      <Button
+        title="Login"
+        onPress={() => {
+          navigation.navigate('MainStack');
+        }}
+      />
       <Gap height={30} />
       <Link
         title="Create My Account"

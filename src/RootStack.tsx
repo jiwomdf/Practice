@@ -13,7 +13,7 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 
 export type RootStackParamList = {
   Login: undefined;
-  Screen1: undefined;
+  MainStack: undefined;
   Screen2: {exampleParam?: string};
   Screen3: undefined;
   Dashboard: undefined;
@@ -37,7 +37,7 @@ const RootStack = () => {
   return (
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />
-      <Stack.Screen name="Screen1" component={MainStack} />
+      <Stack.Screen name="MainStack" component={MainStack} />
       <Stack.Screen name="Screen2" component={Screen2} />
       <Stack.Screen name="Screen3" component={Screen3} />
     </Stack.Navigator>

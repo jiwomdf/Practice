@@ -30,7 +30,6 @@ const InputEmail: React.FC<InputEmailProps> = ({
     console.log(text);
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(text) === false) {
-      console.log('Email is Not Correct');
       setErrMsg("input doesn't match email format");
       return false;
     } else {
@@ -59,18 +58,18 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: colors.text.secondary,
     marginBottom: 6,
-    fontFamily: fonts.primary[400], // Corrected fontFamily spelling
+    fontFamily: fonts.primary[400],
   },
   errLabel: {
     fontSize: 16,
     color: colors.text.error,
     marginBottom: 6,
-    fontFamily: fonts.primary[400], // Corrected fontFamily spelling
+    fontFamily: fonts.primary[400],
   },
   input: {
     borderRadius: 10,
     borderWidth: 1,
-    padding: 12, // Added padding for better user experience
+    padding: 12,
   },
 });
 
