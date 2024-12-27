@@ -1,18 +1,14 @@
-import {MmvkService} from '../local/mmkv';
+import {MMKVAuthService} from '../local/mmkv-auth-service';
 import {CredetialModel} from '../model/credential-model';
 
 export class AuthRepositoryImpl {
-  constructor(private mmvk: MmvkService) {}
+  constructor(private mmvk: MMKVAuthService) {}
 
   async login(credential: CredetialModel): Promise<boolean> {
     try {
       const result = await this.mmvk.saveCredentials(credential);
-      //TODO JIWO
-      console.log(result);
       return result != null;
     } catch (error) {
-      //TODO JIWO
-      console.log(error);
       throw error;
     }
   }

@@ -23,7 +23,7 @@ export const Detail: React.FC<DetailProp> = ({navigation, route}) => {
     <View>
       <Text>{todo?.title}</Text>;
       <Input label="input todo" value={todo?.content} />
-      <Button title="Back" onPress={() => navigation.goBack()} />
+      <Button title="Save" onPress={() => {}} />
     </View>
   );
 };

@@ -2,7 +2,7 @@ import {UserCredentials} from 'react-native-keychain';
 import {MMKV} from 'react-native-mmkv';
 import {CredetialModel} from '../model/credential-model';
 
-export class MmvkService {
+export class MMKVAuthService {
   storage = new MMKV();
 
   saveCredentials = async (credential: CredetialModel) => {

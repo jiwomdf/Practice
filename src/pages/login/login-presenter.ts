@@ -1,14 +1,15 @@
-import {KeychainService} from '../../core/data/local/keychainservice';
+import {MMKVAuthService} from '../../core/data/local/mmkv-auth-service';
+import {CredetialModel} from '../../core/data/model/credential-model';
 import {AuthRepositoryImpl} from '../../core/data/repository/auth-repository-impl';
 
-export const setLogin = (email: string, password: string) => {
-  let keychain = new KeychainService();
+export const setLogin = (credential: CredetialModel) => {
+  let keychain = new MMKVAuthService();
   let authService = new AuthRepositoryImpl(keychain);
-  return authService.login(email, password);
+  return authService.login(credential);
 };
 
 export const getLogin = () => {
-  let keychain = new KeychainService();
+  let keychain = new MMKVAuthService();
   let authService = new AuthRepositoryImpl(keychain);
   return authService.getCredentials();
 };

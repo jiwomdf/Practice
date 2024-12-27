@@ -6,6 +6,7 @@ import {Gap, Link} from '../../components/atom';
 import Button from '../../components/atom/button';
 import InputDefault from '../../components/atom/input';
 import InputEmail from '../../components/atom/input/EmailInput';
+import {CredetialModel} from '../../core/data/model/credential-model';
 import {RootStackParamList} from '../../RootStack';
 import {colors, fonts} from '../../utils';
 import {setLogin} from './login-presenter';
@@ -26,7 +27,7 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
   const [password, setPassword] = useState('');
 
   const handleLogin = (email: string, password: string) => {
-    setLogin(email, password);
+    setLogin(new CredetialModel(email, password));
     navigation.navigate('MainStack');
   };
 
