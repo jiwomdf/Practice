@@ -1,16 +1,13 @@
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, TouchableOpacity} from 'react-native';
+import {TodoModel} from '../../../core/data/model/todo-model';
 
-type ItemProps = {title: string; onClick: (item: string) => void};
+type ItemProps = {todo: TodoModel; onClick: (item: TodoModel) => void};
 
-const Item = ({title, onClick}: ItemProps) => (
+const Item = ({todo, onClick}: ItemProps) => (
   <TouchableOpacity
     onPress={() => {
-      onClick(title);
-    }}>
-    <View style={styles.item}>
-      <Text style={styles.title}>{title}</Text>
-    </View>
-  </TouchableOpacity>
+      onClick(todo);
+    }}></TouchableOpacity>
 );
 
 const styles = StyleSheet.create({

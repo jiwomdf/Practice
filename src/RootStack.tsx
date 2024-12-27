@@ -1,11 +1,12 @@
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
+import {TodoModel} from './core/data/model/todo-model';
+import {Detail} from './pages/detail';
 import {Login} from './pages/login';
 import {Dashboard} from './pages/main/screen-main1';
 import {ScreenMain2} from './pages/main/screen-main2';
 import {ScreenMain3} from './pages/main/screen-main3';
-import {Screen2} from './pages/screen2';
 import {Screen3} from './pages/screen3';
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -14,7 +15,7 @@ const Tab = createBottomTabNavigator<RootStackParamList>();
 export type RootStackParamList = {
   Login: undefined;
   MainStack: undefined;
-  Screen2: {exampleParam?: string};
+  Detail: {todo?: TodoModel};
   Screen3: undefined;
   Dashboard: undefined;
   ScreenMain2: undefined;
@@ -38,7 +39,7 @@ const RootStack = () => {
     <Stack.Navigator>
       <Stack.Screen name="Login" component={Login} />
       <Stack.Screen name="MainStack" component={MainStack} />
-      <Stack.Screen name="Screen2" component={Screen2} />
+      <Stack.Screen name="Detail" component={Detail} />
       <Stack.Screen name="Screen3" component={Screen3} />
     </Stack.Navigator>
   );

@@ -26,14 +26,14 @@ const InputEmail: React.FC<InputEmailProps> = ({
     setBorder(colors.border);
   };
 
-  const validate = (text: string) => {
-    console.log(text);
+  const validateEmail = (text: string) => {
     let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
     if (reg.test(text) === false) {
       setErrMsg("input doesn't match email format");
       return false;
     } else {
       setErrMsg('');
+      return true;
     }
   };
 
@@ -45,7 +45,7 @@ const InputEmail: React.FC<InputEmailProps> = ({
         onBlur={handleBlur}
         style={[styles.input, {borderColor: border}]}
         value={value}
-        onChangeText={text => validate(text)}
+        onChangeText={text => validateEmail(text)}
         secureTextEntry={secureTextEntry}
       />
       <Text style={styles.errLabel}>{errMsg}</Text>

@@ -1,4 +1,4 @@
-export class Auth {
+export class CredetialModel {
   email: string;
   password: string;
 

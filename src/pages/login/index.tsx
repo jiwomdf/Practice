@@ -21,7 +21,7 @@ interface LoginProp {
   route: LoginRouteProp;
 }
 export const Login: React.FC<LoginProp> = ({navigation}) => {
-  const [isSuccessLogin, setIsSuccessLogin] = useState(false);
+  const [isFormvalid, setIsFormValid] = useState(false);
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
@@ -32,10 +32,12 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
 
   const handleEmailChange = (text: string) => {
     setEmail(text);
+    setIsFormValid(email !== '' && password.length > 0);
   };
 
   const handlPasswordChange = (text: string) => {
     setPassword(text);
+    setIsFormValid(email !== '' && password.length > 0);
   };
 
   return (

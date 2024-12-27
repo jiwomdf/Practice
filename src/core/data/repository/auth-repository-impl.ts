@@ -1,11 +1,12 @@
-import {KeychainService} from '../local/keychainservice';
+import {MmvkService} from '../local/mmkv';
+import {CredetialModel} from '../model/credential-model';
 
 export class AuthRepositoryImpl {
-  constructor(private keychain: KeychainService) {}
+  constructor(private mmvk: MmvkService) {}
 
-  async login(email: string, password: string): Promise<boolean> {
+  async login(credential: CredetialModel): Promise<boolean> {
     try {
-      const result = await this.keychain.saveCredentials(email, password);
+      const result = await this.mmvk.saveCredentials(credential);
       //TODO JIWO
       console.log(result);
       return result != null;
@@ -18,14 +19,14 @@ export class AuthRepositoryImpl {
 
   async getCredentials(): Promise<boolean> {
     try {
-      const result = await this.keychain.getCredentials();
+      const result = await this.mmvk.getCredentials();
       return result != null;
     } catch (error) {
       throw error;
     }
   }
 
-  logout(): Promise<void> {
-    return this.keychain.deleteCredentials();
+  logout(): void {
+    this.mmvk.deleteCredentials();
   }
 }
