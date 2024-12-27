@@ -1,6 +1,6 @@
 import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {Gap, Link} from '../../components/atom';
 import Button from '../../components/atom/button';
@@ -8,6 +8,7 @@ import InputDefault from '../../components/atom/input';
 import InputEmail from '../../components/atom/input/EmailInput';
 import {RootStackParamList} from '../../RootStack';
 import {colors, fonts} from '../../utils';
+import {setLogin} from './login-presenter';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -20,20 +21,41 @@ interface LoginProp {
   route: LoginRouteProp;
 }
 export const Login: React.FC<LoginProp> = ({navigation}) => {
+  const [isSuccessLogin, setIsSuccessLogin] = useState(false);
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+
+  const handleLogin = (email: string, password: string) => {
+    setLogin(email, password);
+    navigation.navigate('MainStack');
+  };
+
+  const handleEmailChange = (text: string) => {
+    setEmail(text);
+  };
+
+  const handlPasswordChange = (text: string) => {
+    setPassword(text);
+  };
+
   return (
     <View style={styles.page}>
       {/* <IlLogo /> */}
       <Text style={styles.title}>Login </Text>
-      <InputEmail label="Email Address" />
+      <InputEmail label="Email Address" onChangeText={handleEmailChange} />
       <Gap height={24} />
-      <InputDefault label="Password" secureTextEntry />
+      <InputDefault
+        label="Password"
+        secureTextEntry
+        onChangeText={handlPasswordChange}
+      />
       <Gap height={10} />
       <Link title="Forgot My Password" size={12} onPress={() => {}} />
       <Gap height={40} />
       <Button
         title="Login"
         onPress={() => {
-          navigation.navigate('MainStack');
+          handleLogin(email, password);
         }}
       />
       <Gap height={30} />

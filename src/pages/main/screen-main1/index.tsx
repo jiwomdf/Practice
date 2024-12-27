@@ -1,6 +1,6 @@
 import {useNavigation} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Button, FlatList, Text, View} from 'react-native';
 import {RootStackParamList, Screen1NavigationProp} from '../../../RootStack';
 import Item from '../../../components/atom/item';
@@ -54,6 +54,11 @@ export const Dashboard: React.FC<ScreenMainProps> = () => {
   const removeItem = (item: string) => {
     setListChoose(prevList => prevList.filter(i => i !== item));
   };
+
+  useEffect(() => {
+    //const data = getLogin();
+    //console.log(data);
+  }, []);
 
   return (
     <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
