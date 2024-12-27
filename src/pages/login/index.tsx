@@ -2,8 +2,10 @@ import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
-import {Gap, Input, Link} from '../../components/atom';
+import {Gap, Link} from '../../components/atom';
 import Button from '../../components/atom/button';
+import InputDefault from '../../components/atom/input';
+import InputEmail from '../../components/atom/input/EmailInput';
 import {RootStackParamList} from '../../RootStack';
 import {colors, fonts} from '../../utils';
 
@@ -22,9 +24,9 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
     <View style={styles.page}>
       {/* <IlLogo /> */}
       <Text style={styles.title}>Login </Text>
-      <Input label="Email Address" />
+      <InputEmail label="Email Address" />
       <Gap height={24} />
-      <Input label="Password" secureTextEntry />
+      <InputDefault label="Password" secureTextEntry />
       <Gap height={10} />
       <Link title="Forgot My Password" size={12} onPress={() => {}} />
       <Gap height={40} />

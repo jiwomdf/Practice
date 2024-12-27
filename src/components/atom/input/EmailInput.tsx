@@ -2,20 +2,21 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-interface InputDefaultProps {
+interface InputEmailProps {
   label: string;
   value?: string;
   onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
 }
 
-const InputDefault: React.FC<InputDefaultProps> = ({
+const InputEmail: React.FC<InputEmailProps> = ({
   label,
   value,
   onChangeText,
   secureTextEntry = false,
 }) => {
   const [border, setBorder] = useState(colors.border);
+  const [errMsg, setErrMsg] = useState('');
 
   const handleFocus = () => {
     setBorder(colors.tertiary);
@@ -23,6 +24,18 @@ const InputDefault: React.FC<InputDefaultProps> = ({
 
   const handleBlur = () => {
     setBorder(colors.border);
+  };
+
+  const validate = (text: string) => {
+    console.log(text);
+    let reg = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w\w+)+$/;
+    if (reg.test(text) === false) {
+      console.log('Email is Not Correct');
+      setErrMsg("input doesn't match email format");
+      return false;
+    } else {
+      setErrMsg('');
+    }
   };
 
   return (
@@ -33,9 +46,10 @@ const InputDefault: React.FC<InputDefaultProps> = ({
         onBlur={handleBlur}
         style={[styles.input, {borderColor: border}]}
         value={value}
-        onChangeText={onChangeText}
+        onChangeText={text => validate(text)}
         secureTextEntry={secureTextEntry}
       />
+      <Text style={styles.errLabel}>{errMsg}</Text>
     </View>
   );
 };
@@ -47,6 +61,12 @@ const styles = StyleSheet.create({
     marginBottom: 6,
     fontFamily: fonts.primary[400], // Corrected fontFamily spelling
   },
+  errLabel: {
+    fontSize: 16,
+    color: colors.text.error,
+    marginBottom: 6,
+    fontFamily: fonts.primary[400], // Corrected fontFamily spelling
+  },
   input: {
     borderRadius: 10,
     borderWidth: 1,
@@ -54,4 +74,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InputDefault;
+export default InputEmail;

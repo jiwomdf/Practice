@@ -2,7 +2,7 @@ import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {Login} from './pages/login';
-import {ScreenMain1} from './pages/main/screen-main1';
+import {Dashboard} from './pages/main/screen-main1';
 import {ScreenMain2} from './pages/main/screen-main2';
 import {ScreenMain3} from './pages/main/screen-main3';
 import {Screen2} from './pages/screen2';
@@ -16,7 +16,7 @@ export type RootStackParamList = {
   Screen1: undefined;
   Screen2: {exampleParam?: string};
   Screen3: undefined;
-  ScreenMain1: undefined;
+  Dashboard: undefined;
   ScreenMain2: undefined;
   ScreenMain3: undefined;
 };
@@ -26,7 +26,7 @@ export type Screen1NavigationProp = StackNavigationProp<RootStackParamList>;
 const MainStack: React.FC = () => {
   return (
     <Tab.Navigator screenOptions={{headerShown: false}}>
-      <Stack.Screen name="ScreenMain1" component={ScreenMain1} />
+      <Stack.Screen name="Dashboard" component={Dashboard} />
       <Stack.Screen name="ScreenMain2" component={ScreenMain2} />
       <Stack.Screen name="ScreenMain3" component={ScreenMain3} />
     </Tab.Navigator>

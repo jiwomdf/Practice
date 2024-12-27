@@ -2,14 +2,14 @@ import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-interface InputDefaultProps {
+interface InputProps {
   label: string;
   value?: string;
   onChangeText?: (text: string) => void;
   secureTextEntry?: boolean;
 }
 
-const InputDefault: React.FC<InputDefaultProps> = ({
+const Input: React.FC<InputProps> = ({
   label,
   value,
   onChangeText,
@@ -54,4 +54,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default InputDefault;
+export default Input;

@@ -8,7 +8,7 @@ import {RemovableItem} from '../../../components/atom/removable-item';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
-  'ScreenMain1'
+  'Dashboard'
 >;
 
 interface ScreenMainProps {
@@ -42,7 +42,7 @@ const DATA = [
   },
 ];
 
-export const ScreenMain1: React.FC<ScreenMainProps> = () => {
+export const Dashboard: React.FC<ScreenMainProps> = () => {
   const navigation = useNavigation<Screen1NavigationProp>();
 
   const [listChoose, setListChoose] = useState([] as string[]);
