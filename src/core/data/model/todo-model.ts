@@ -4,10 +4,10 @@ export class TodoModel {
   content: string;
   completed: boolean;
 
-  constructor(id: string, title: string, complete: boolean) {
+  constructor(id: string, title: string, content: string, complete: boolean) {
     this.id = id;
     this.title = title;
-    this.content = title;
+    this.content = content;
     this.completed = complete;
   }
 }

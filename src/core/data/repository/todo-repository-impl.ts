@@ -13,6 +13,15 @@ export class TodoRepositoryImpl {
     }
   }
 
+  async getTodos(): Promise<TodoModel[]> {
+    try {
+      const todos = await this.mmvk.getTodos();
+      return todos || [];
+    } catch (error) {
+      throw error;
+    }
+  }
+
   async removeTodo(todo: TodoModel): Promise<boolean> {
     try {
       const result = await this.mmvk.removeTodo(todo.id);

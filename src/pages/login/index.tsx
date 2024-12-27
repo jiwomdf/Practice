@@ -30,7 +30,6 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
 
   const handleLogin = async (email: string, password: string) => {
     const result = await setLogin(new CredetialModel(email, password));
-    console.log('result', result);
     if (result) {
       navigation.navigate('MainStack');
     } else {
