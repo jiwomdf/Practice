@@ -8,7 +8,7 @@ export class MMKVAuthService {
   saveCredentials = async (credential: CredetialModel) => {
     try {
       const jsonString = JSON.stringify(credential);
-      localStorage.setItem('userCredentials', jsonString);
+      this.storage.set('userCredentials', jsonString);
     } catch (error) {
       throw error;
     }
@@ -16,7 +16,7 @@ export class MMKVAuthService {
 
   getCredentials = (): UserCredentials | null => {
     try {
-      const jsonString = localStorage.getItem('userCredentials');
+      const jsonString = this.storage.getString('userCredentials');
       if (!jsonString) {
         return null;
       }
@@ -29,7 +29,7 @@ export class MMKVAuthService {
 
   deleteCredentials = (): void => {
     try {
-      localStorage.removeItem('userCredentials');
+      this.storage.delete('userCredentials');
       console.log('Credentials deleted successfully!');
     } catch (error) {
       console.error('Error deleting credentials:', error);

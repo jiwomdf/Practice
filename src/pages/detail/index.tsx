@@ -3,7 +3,7 @@ import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React from 'react';
 import {Button, StyleSheet, Text, View} from 'react-native';
 import {RootStackParamList} from '../../RootStack';
-import Input from '../../components/atom/input/DefaultInput';
+import DefaultInput from '../../components/atom/input/DefaultInput';
 
 type RegisterScreenNavigationProp = NativeStackNavigationProp<
   RootStackParamList,
@@ -23,7 +23,11 @@ export const Detail: React.FC<DetailProp> = ({navigation, route}) => {
     <View>
       <Text style={styles.title}>{todo?.title}</Text>;
       <View style={styles.item}>
-        <Input label="input todo" value={todo?.content} />
+        <DefaultInput
+          label="Todo"
+          value={todo?.content}
+          onChangeText={value => {}}
+        />
       </View>
       <Button title="Save" onPress={() => {}} />
     </View>

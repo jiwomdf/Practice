@@ -6,20 +6,13 @@
  */
 
 import React from 'react';
-import {
-  StyleSheet,
-  useColorScheme
-} from 'react-native';
+import {StyleSheet, useColorScheme} from 'react-native';
 
-import { NavigationContainer } from '@react-navigation/native';
+import {NavigationContainer} from '@react-navigation/native';
 
-import {
-  Colors
-} from 'react-native/Libraries/NewAppScreen';
+import FlashMessage from 'react-native-flash-message';
+import {Colors} from 'react-native/Libraries/NewAppScreen';
 import RootStack from './RootStack';
-
-
-
 
 function App(): React.JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
@@ -30,7 +23,8 @@ function App(): React.JSX.Element {
 
   return (
     <NavigationContainer>
-      <RootStack /> 
+      <RootStack />
+      <FlashMessage position="top" />
     </NavigationContainer>
   );
 }
@@ -55,4 +49,3 @@ const styles = StyleSheet.create({
 });
 
 export default App;
-

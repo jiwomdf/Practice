@@ -1,28 +1,32 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, Text, TextInput, View} from 'react-native';
 import {colors, fonts} from '../../../utils';
 
-interface DefaultInputProps {
+interface PasswordInputProps {
   label: string;
   value?: string;
   onChangeText: (text: string) => void;
   secureTextEntry?: boolean;
 }
 
-const DefaultInput: React.FC<DefaultInputProps> = ({
+const PasswordInput: React.FC<PasswordInputProps> = ({
   label,
   value,
   onChangeText,
   secureTextEntry = false,
 }) => {
   const [border, setBorder] = useState(colors.border);
-  const [inputValue, setInputValue] = useState('');
+  const [errMsg, setErrMsg] = useState('');
 
-  useEffect(() => {
-    if (value) {
-      setInputValue(value);
+  const validateForm = (text: string) => {
+    const isInvalid = text.length <= 3;
+    if (isInvalid) {
+      setErrMsg('Password must be at least 4 characters');
+    } else {
+      setErrMsg('');
     }
-  }, []);
+    onChangeText(text);
+  };
 
   const handleFocus = () => {
     setBorder(colors.tertiary);
@@ -39,13 +43,10 @@ const DefaultInput: React.FC<DefaultInputProps> = ({
         onFocus={handleFocus}
         onBlur={handleBlur}
         style={[styles.input, {borderColor: border}]}
-        value={inputValue}
-        onChangeText={text => {
-          setInputValue(text);
-          onChangeText(text);
-        }}
+        onChangeText={validateForm}
         secureTextEntry={secureTextEntry}
       />
+      <Text style={styles.errLabel}>{errMsg}</Text>
     </View>
   );
 };
@@ -70,4 +71,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default DefaultInput;
+export default PasswordInput;

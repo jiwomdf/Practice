@@ -2,10 +2,11 @@ import {RouteProp} from '@react-navigation/native';
 import {NativeStackNavigationProp} from '@react-navigation/native-stack';
 import React, {useState} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {showMessage} from 'react-native-flash-message';
 import {Gap, Link} from '../../components/atom';
 import Button from '../../components/atom/button';
-import DefaultInput from '../../components/atom/input/DefaultInput';
 import InputEmail from '../../components/atom/input/EmailInput';
+import DefaultInput from '../../components/atom/input/PasswordInput';
 import {CredetialModel} from '../../core/data/model/credential-model';
 import {RootStackParamList} from '../../RootStack';
 import {colors, fonts} from '../../utils';
@@ -27,9 +28,17 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
 
-  const handleLogin = (email: string, password: string) => {
-    setLogin(new CredetialModel(email, password));
-    navigation.navigate('MainStack');
+  const handleLogin = async (email: string, password: string) => {
+    const result = await setLogin(new CredetialModel(email, password));
+    console.log('result', result);
+    if (result) {
+      navigation.navigate('MainStack');
+    } else {
+      showMessage({
+        message: 'Something went wrong',
+        type: 'danger',
+      });
+    }
   };
 
   const handleEmailChange = (text: string) => {
@@ -61,17 +70,10 @@ export const Login: React.FC<LoginProp> = ({navigation}) => {
       <Gap height={40} />
       <Button
         title="Login"
-        onPress={() => {
-          console.log(
-            'isFormvalid: ' + isFormvalid,
-            'email: ' + email,
-            'password: ' + password,
-          );
+        onPress={async () => {
           if (isFormvalid) {
-            handleLogin(email, password);
-          } else {
+            await handleLogin(email, password);
           }
-          //handleLogin(email, password);
         }}
       />
       <Gap height={30} />

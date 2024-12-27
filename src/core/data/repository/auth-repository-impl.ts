@@ -6,8 +6,8 @@ export class AuthRepositoryImpl {
 
   async login(credential: CredetialModel): Promise<boolean> {
     try {
-      const result = await this.mmvk.saveCredentials(credential);
-      return result != null;
+      await this.mmvk.saveCredentials(credential);
+      return true;
     } catch (error) {
       throw error;
     }
@@ -15,8 +15,8 @@ export class AuthRepositoryImpl {
 
   async getCredentials(): Promise<boolean> {
     try {
-      const result = await this.mmvk.getCredentials();
-      return result != null;
+      await this.mmvk.getCredentials();
+      return true;
     } catch (error) {
       throw error;
     }
